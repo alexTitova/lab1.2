@@ -19,6 +19,7 @@ namespace lab1.classes
         public ExceptionAlreadyExist(string message)
             : base(message)
         { }
+
     }
 
 
