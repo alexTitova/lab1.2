@@ -34,6 +34,40 @@ namespace lab1.classes
             set { this.mark = value; }
         }
 
+
+        public override string ToString()
+        {
+            return this.name.ToString()+" mark - "+ this.mark.ToString();
+        }
+
+
+        public static bool operator >(Vertex x, Vertex y)
+        {
+            return x.Name > y.Name;
+        }
+        public static bool operator <(Vertex x, Vertex y)
+        {
+            return x.Name < y.Name;
+        }
+
+        public static bool operator >=(Vertex x, Vertex y)
+        {
+            return x.Name >= y.Name;
+        }
+        public static bool operator <=(Vertex x, Vertex y)
+        {
+            return x.Name <= y.Name;
+        }
+
+        public static bool operator ==(Vertex x, Vertex y)
+        {
+            return x.Name == y.Name;
+        }
+
+        public static bool operator !=(Vertex x, Vertex y)
+        {
+            return x.Name != y.Name;
+        }
     }
 
 

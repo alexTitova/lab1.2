@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\exceptions.cs" />
     <Compile Include="classes\graph.cs" />
     <Compile Include="classes\ribs.cs" />
     <Compile Include="classes\vertex.cs" />

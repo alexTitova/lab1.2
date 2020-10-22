@@ -43,5 +43,31 @@ namespace lab1.classes
             set { this.value = value; }
         }
 
+
+        public override string ToString()
+        {
+            return'('+this.start.Name.ToString()+','+this.end.Name.ToString()+") value"+ this.value.ToString();
+        }
+
     }
+
+
+
+    class Rib_Conparer : IComparer<Rib>
+    { 
+        public int Compare(Rib x,Rib y)
+        {
+            if ((x.Start < y.Start) && (x.End< y.End)&&(x.Value< y.Value))
+                return -1;
+            else
+            {
+                if ((x.Start > y.Start) && (x.End > y.End) && (x.Value > y.Value))
+                    return 1;
+                else
+                    return 0;
+            }
+        }
+
+    }
+
 }
