@@ -40,6 +40,8 @@ namespace lab1
 
             List<Rib> ribs = new List<Rib> { ab, ad, ae, bc, be, ca, cd, dc, de, db, ea, ec };
 
+            int x = ribs.BinarySearch(dc, new Rib_Comparer());
+
             Graph graph = new Graph(vertexes, ribs);
 
             int[,] mat_adj = graph.GetMatrixAdjacency();
