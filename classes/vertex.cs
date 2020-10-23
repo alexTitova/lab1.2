@@ -10,7 +10,8 @@ namespace lab1.classes
     {
         private int name;
         private int mark;
-
+        private Vertex dad;
+        private bool isChecked;
 
         public Vertex() { }
 
@@ -18,6 +19,9 @@ namespace lab1.classes
         {
             this.name = name;
             this.mark = 1000000;
+            this.isChecked = false;
+            this.dad = new Vertex();
+           
         }
 
         public int Name
@@ -33,6 +37,21 @@ namespace lab1.classes
 
             set { this.mark = value; }
         }
+
+        public Vertex Dad
+        {
+            get { return this.dad; }
+
+            set { this.dad = value; }
+        }
+
+        public bool IsChecked
+        {
+            get { return this.isChecked; }
+
+            set { this.isChecked = value; }
+        }
+
 
 
         public override string ToString()
