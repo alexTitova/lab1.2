@@ -75,6 +75,18 @@ namespace lab1.classes
         }
 
 
+
+        public Rib GetRib((Vertex, Vertex) rib)
+        {
+            Rib unit = new Rib(rib, 0);
+
+            if (this.ribs.BinarySearch(unit, new Rib_Comparer()) < 0)
+                throw new ExceptionDoesNotExist("Rib does not exist");
+
+            return this.ribs[this.ribs.BinarySearch(unit, new Rib_Comparer())];
+        }
+
+
         public int[,] GetMatrixAdjacency()
         {
             int[,] result = new int[this.vertexes.Count(), this.vertexes.Count()];
