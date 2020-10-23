@@ -54,7 +54,7 @@ namespace lab1.classes
         {
             if (this.vertexes.BinarySearch(rib.Start, new Vertex_comparer()) >=0 && this.vertexes.BinarySearch(rib.End, new Vertex_comparer())>=0)
             {
-                if (!this.ribs.Contains(rib))
+                if (this.ribs.BinarySearch(rib, new Rib_Comparer())<0)
                     this.ribs.Add(rib);
                 else
                     throw new ExceptionAlreadyExist("Rib " + rib.ToString() + " has already exist");

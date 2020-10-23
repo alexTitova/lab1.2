@@ -53,15 +53,15 @@ namespace lab1.classes
 
 
 
-    class Rib_Conparer : IComparer<Rib>
+    class Rib_Comparer : IComparer<Rib>
     { 
         public int Compare(Rib x,Rib y)
         {
-            if ((x.Start < y.Start) && (x.End< y.End)&&(x.Value< y.Value))
+            if ((x.Start < y.Start) && (x.End< y.End))
                 return -1;
             else
             {
-                if ((x.Start > y.Start) && (x.End > y.End) && (x.Value > y.Value))
+                if ((x.Start > y.Start) && (x.End > y.End))
                     return 1;
                 else
                     return 0;
