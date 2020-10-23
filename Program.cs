@@ -40,7 +40,7 @@ namespace lab1
 
             List<Rib> ribs = new List<Rib> { ab, ad, ae, bc, be, ca, cd, dc, de, db, ea, ec };
 
-            int x = ribs.BinarySearch(dc, new Rib_Comparer());
+            int x = ribs.BinarySearch(new Rib((c,a),0), new Rib_Comparer());
 
             Graph graph = new Graph(vertexes, ribs);
 
