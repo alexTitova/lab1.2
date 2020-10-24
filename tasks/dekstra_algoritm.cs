@@ -13,26 +13,27 @@ namespace lab1.tasks
     {
 
         // функция будет собирать путь
- /*       private static string GetPath(List<Vertex> vertexes, (Vertex,Vertex) path)
+        private static string GetPath(List<Vertex> vertexes, (Vertex,Vertex) path)
         {
-            string result;
+            string result="";
             List<Vertex> tmp = new List<Vertex>();
-            Vertex current_vertex = path.Item2;
+            Vertex current_vertex = vertexes[ExtraFuncListVertex.FindIndexEndOfRib(vertexes, path.Item2)];
             tmp.Add(current_vertex);
 
-            while(current_vertex!=vertexes[0])
+            while(current_vertex!=path.Item1)
             {
                 tmp.Add(current_vertex.Dad);
                 current_vertex = current_vertex.Dad;
             }
 
             tmp.Reverse();
-            result = tmp.ToString();
+            foreach(Vertex vertex in tmp)
+                result +=vertex.ToString();
             
 
             return result;
         }
- */
+ 
 
 
 
@@ -112,8 +113,9 @@ namespace lab1.tasks
             //считает путь от начальной вершины до всех остальных
             OneStep(vertexes, graph);
 
-//            if (start.Name==path.Item1.Name)
-//                path_vertex = GetPath(vertexes, path);
+            if (start==path.Item1)
+                path_vertex = GetPath(vertexes, path);
+            //здесь все работает, но почему-то не возвращает
 
             int line = graph.Vertexes.BinarySearch(start, new Vertex_comparer());
             GetPathTable(vertexes, path_table, line);
@@ -128,7 +130,7 @@ namespace lab1.tasks
         public static (int[,],string) Algoritm(Graph graph,(Vertex,Vertex) path)
         {
             int[,] path_table = new int[graph.GetCountOfVertexes(), graph.GetCountOfVertexes()];
-            string path_vertex = "0";
+            string path_vertex = "";
 
             foreach (Vertex vertex in graph.Vertexes)
             {
