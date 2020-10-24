@@ -24,6 +24,12 @@ namespace lab1.classes
            
         }
 
+        public Vertex( int name, int mark) 
+        {
+            this.name = name;
+            this.mark = mark;
+        }
+
         public int Name
         {
             get { return this.name; }
@@ -56,7 +62,7 @@ namespace lab1.classes
 
         public override string ToString()
         {
-            return this.name.ToString()+" mark - "+ this.mark.ToString();
+            return this.name.ToString()+" - ";
         }
 
 
@@ -85,27 +91,32 @@ namespace lab1.classes
 
         public static bool operator !=(Vertex x, Vertex y)
         {
-            return x.Name != y.Name;
+           
+                return x.Name != y.Name;
         }
+
     }
 
 
 
     class Vertex_comparer : IComparer<Vertex>
     {
-        public int Compare(Vertex x,Vertex y)
-        {
-            if (x.Name < y.Name)
-                return -1;
-            else
-            {
-                if (x.Name > y.Name)
-                    return 1;
-                else
-                    return 0;
-            }    
-        }
+          public int Compare(Vertex x,Vertex y)
+          {
+              if (x.Name < y.Name)
+                  return -1;
+              else
+              {
+                  if (x.Name > y.Name)
+                      return 1;
+                  else
+                      return 0;
+              }    
+          }
+        
     }
+
+
 
 
 

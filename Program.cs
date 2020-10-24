@@ -1,4 +1,5 @@
 ﻿using lab1.classes;
+using lab1.tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace lab1
     {
         static void Main(string[] args)
         {
+            
             Vertex a = new Vertex(101);
             Vertex b = new Vertex(102);
             Vertex c = new Vertex(103);
@@ -18,7 +20,7 @@ namespace lab1
             Vertex e = new Vertex(105);
             Vertex h = new Vertex(106);
 
-            List<Vertex> vertexes = new List<Vertex>() { b, c, a, d, e, h };
+            List<Vertex> vertexes = new List<Vertex>() { b, a, c, d, h,e };
 
             Rib ab = new Rib((a, b), 7);
             Rib ad = new Rib((a, d), 1);
@@ -40,13 +42,26 @@ namespace lab1
 
             List<Rib> ribs = new List<Rib> { ab, ad, ae, bc, be, ca, cd, dc, de, db, ea, ec };
 
-            int x = ribs.BinarySearch(new Rib((c,a),0), new Rib_Comparer());
+             Graph graph = new Graph(vertexes, ribs);
 
-            Graph graph = new Graph(vertexes, ribs);
+            
+                        (int[,], string) dekstra = DekstraAlgoritm.Algoritm(graph,(c,a));
 
-            int[,] mat_adj = graph.GetMatrixAdjacency();
+
+                      //  int[,] tab = dekstra.Item1;
+
+                        Console.WriteLine(dekstra.Item2);
+            
+
+            Console.WriteLine("okk");
+            
+
+
+
 
             Console.ReadKey();
+
+        
         }
     }
 }
