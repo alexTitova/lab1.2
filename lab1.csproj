@@ -47,14 +47,14 @@
     <Compile Include="classes\graph.cs" />
     <Compile Include="classes\ribs.cs" />
     <Compile Include="classes\vertex.cs" />
+    <Compile Include="parts\extra_func_List.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="tasks\dekstra_algoritm.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="tasks\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

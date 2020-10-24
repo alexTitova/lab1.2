@@ -109,5 +109,37 @@ namespace lab1.classes
 
             return result;
         }
+
+
+        //возврашает список имен смежныхь вершин
+        public List<int> GetAdjacentVertexesName(Vertex unit)
+        {
+            List<int> result = new List<int>();
+            int i = this.vertexes.BinarySearch(unit, new Vertex_comparer());
+            int[,] matrix_adjacency = this.GetMatrixAdjacency();
+
+            for(int j=0;j<this.vertexes.Count();j++)
+            {
+                if (matrix_adjacency[i, j] != 0)
+                    result.Add(this.vertexes[j].Name);
+            }
+
+            return result;
+        }
+
+        public List<Rib> GetOutgoingRibs(Vertex unit)
+        {
+            List<Rib> result = new List<Rib>();
+
+            foreach(Rib rib in this.ribs)
+            {
+                if (unit == rib.Start)
+                    result.Add(rib);
+            }
+
+            return result;
+        }
+
+
     }
 }
