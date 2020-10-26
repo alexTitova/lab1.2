@@ -3,6 +3,7 @@ using lab1.parts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,26 +14,20 @@ namespace lab1.tasks
     {
 
         // функция будет собирать путь
- /*       private static string GetPath(List<Vertex> vertexes, (Vertex,Vertex) path)
+        private static void GetPath(List<Vertex> vertexes, (Vertex,Vertex) path, List<Vertex> path_vertex)
         {
-            string result;
-            List<Vertex> tmp = new List<Vertex>();
-            Vertex current_vertex = path.Item2;
-            tmp.Add(current_vertex);
+            Vertex current_vertex = vertexes[ExtraFuncListVertex.FindIndexEndOfRib(vertexes, path.Item2)];
+            path_vertex.Add(current_vertex);
 
-            while(current_vertex!=vertexes[0])
+            while(current_vertex!=path.Item1)
             {
-                tmp.Add(current_vertex.Dad);
+                path_vertex.Add(current_vertex.Dad);
                 current_vertex = current_vertex.Dad;
             }
 
-            tmp.Reverse();
-            result = tmp.ToString();
-            
-
-            return result;
+            path_vertex.Reverse();
         }
- */
+ 
 
 
 
@@ -96,7 +91,7 @@ namespace lab1.tasks
 
 
         //все вычисления тут происходят параленьно 
-        private static void OneStepDekstra(Graph graph, Vertex start, int[,] path_table, string path_vertex, (Vertex, Vertex) path)
+        private static void OneStepDekstra(Graph graph, Vertex start, int[,] path_table, List<Vertex> path_vertex, (Vertex, Vertex) path)
         {
             List<Vertex> vertexes = new List<Vertex>();
 
@@ -112,8 +107,9 @@ namespace lab1.tasks
             //считает путь от начальной вершины до всех остальных
             OneStep(vertexes, graph);
 
-//            if (start.Name==path.Item1.Name)
-//                path_vertex = GetPath(vertexes, path);
+            if (start==path.Item1)
+                GetPath(vertexes, path, path_vertex);
+            //здесь все работает, но почему-то не возвращает
 
             int line = graph.Vertexes.BinarySearch(start, new Vertex_comparer());
             GetPathTable(vertexes, path_table, line);
@@ -125,15 +121,16 @@ namespace lab1.tasks
 
         // функция где будет распарлеливаться вычисления и собераться вместе 
         // возврашать должна таблицу расстояний+последовательность вершин рути между указанными то  есть пару (int[,], string)
-        public static (int[,],string) Algoritm(Graph graph,(Vertex,Vertex) path)
+        public static (int[,],List<Vertex>) Algoritm(Graph graph,(Vertex,Vertex) path)
         {
             int[,] path_table = new int[graph.GetCountOfVertexes(), graph.GetCountOfVertexes()];
-            string path_vertex = "0";
-
+            List<Vertex> path_vertex = new List<Vertex>();
             foreach (Vertex vertex in graph.Vertexes)
             {
                 // здесь проходит распралеливание на 3 потока нужен делегат на функцию OneStepDekstra
-                OneStepDekstra(graph, vertex, path_table,path_vertex, path);;
+                OneStepDekstra(graph, vertex, path_table,path_vertex, path);
+
+                
             }
 
 

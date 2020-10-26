@@ -45,12 +45,12 @@ namespace lab1
              Graph graph = new Graph(vertexes, ribs);
 
             
-                        (int[,], string) dekstra = DekstraAlgoritm.Algoritm(graph,(c,a));
+                        (int[,], List<Vertex>) dekstra = DekstraAlgoritm.Algoritm(graph,(c,a));
 
 
-                      //  int[,] tab = dekstra.Item1;
-
-                        Console.WriteLine(dekstra.Item2);
+                        //int[,] tab = dekstra.Item1;
+                        foreach (Vertex x in dekstra.Item2)
+                            Console.WriteLine(x.Name);
             
 
             Console.WriteLine("okk");
